@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import MyContext from "./MyContext";
 
-export default function Item({ id, text, onDelete }) {
+export default function Item({ id, text, onDelete, ...props }) {
   const [checked, setChecked] = useState(false);
+  const counter = useContext(MyContext);
 
   return (
-    <div style={{ margin: "10px 0" }}>
+    <div {...props} style={{ margin: "10px 0" }}>
       <label style={{ userSelect: "none" }}>
         <input
           type="checkbox"
@@ -23,6 +25,7 @@ export default function Item({ id, text, onDelete }) {
       >
         Delete
       </button>
+      <span>{counter}</span>
     </div>
   );
 }
